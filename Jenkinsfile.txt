@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Checkout') {
+            steps {
+			echo 'Checking out the latest code version.'	
+			git credentialsId: '62bd6aa0-c725-4e3d-ab59-dd3a0855f5d1', url: 'https://github.com/FrederickCabedoce/projCert.git'
+		  }
+        }
+    }
+}
