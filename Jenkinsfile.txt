@@ -10,7 +10,9 @@ pipeline {
         }
 
 	stage('Zip file') {
-	sh 'zip phppackage.zip .'
+		steps{
+			sh 'zip phppackage.zip .'
+		}
 	}
     }
 }
