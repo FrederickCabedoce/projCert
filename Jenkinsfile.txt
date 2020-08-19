@@ -8,5 +8,9 @@ pipeline {
 			git credentialsId: '62bd6aa0-c725-4e3d-ab59-dd3a0855f5d1', url: 'https://github.com/FrederickCabedoce/projCert.git'
 		  }
         }
+
+	stage{'Zip file'} {
+	sh 'zip phppackage.zip .'
+	}
     }
 }
