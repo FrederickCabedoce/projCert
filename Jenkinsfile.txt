@@ -14,5 +14,29 @@ pipeline {
 			sh 'tar -czf phppackage.tar.gz ./*'
 		}
 	}
+
+	stage('Build Docker Image') {
+		steps{
+			sh 'docker build -t etownage/phpapp:latest -f Dockerfile .'	
+		}
+	}
+	stage('Run Docker Image'){
+		steps{
+			sh 'docker run -itd -P --name phpTestingContainer etownage/phpapp:latest'
+		}
+	}
+
+	stage('Launch apache environment variables'){
+		steps{
+			sh 'docker exec -it phpTestingContainer sh -c ". /etc/apache2/envvars"'
+		}
+	}
+
+	stage('Lauch apache server'){
+		steps{
+			sh 'docker exec -it phpTestingContainer /etc/init.d/apache2 start'
+		}
+	}
+	
     }
 }
