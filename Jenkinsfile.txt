@@ -22,7 +22,7 @@ pipeline {
 	}
 	stage('Run Docker Image'){
 		steps{
-			sh 'docker run -d -P --name phpTestingContainer etownage/phpapp:latest'
+			sh 'docker run -itd -P --name phpTestingContainer etownage/phpapp:latest'
 		}
 	}
 
