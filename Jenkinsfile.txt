@@ -19,7 +19,17 @@ pipeline {
 		steps{
 			sh 'docker build -t etownage/phpapp:latest -f Dockerfile .'	
 		}
+	
 	}
+
+	stage('Remove Previous Docker Container'){
+		steps{
+		     	catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                    		sh "docker rm -f phpTestingContainer"
+                	}
+		}				
+	}	
+
 	stage('Run Docker Image'){
 		steps{
 			sh 'docker run -itd -P --name phpTestingContainer etownage/phpapp:latest'
