@@ -55,6 +55,5 @@ pipeline {
 			sh 'mvn surefire:test'
 		}
 	}
-
     }
 }
