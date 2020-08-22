@@ -52,7 +52,7 @@ pipeline {
 
 	stage('Launch Selenium Test'){
 		steps{
-			sh 'cd CertificationProjectSelenium'
+			sh 'cd ./CertificationProjectSelenium'
 			sh 'mvn surefire:test'
 			sh 'cd ..'
 		}
