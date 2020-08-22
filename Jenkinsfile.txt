@@ -32,7 +32,7 @@ pipeline {
 	}	
 
 	stage('Run Docker Image'){
-		steps{
+		steps{ 
 			sh 'docker run -itd -p 32000:80 --name phpTestingContainer etownage/phpapp:latest'
 		}
 	}
