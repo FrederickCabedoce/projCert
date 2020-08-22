@@ -33,7 +33,7 @@ pipeline {
 
 	stage('Run Docker Image'){
 		steps{
-			sh 'docker run -itd -P --name phpTestingContainer etownage/phpapp:latest'
+			sh 'docker run -itd -p 32000:80 --name phpTestingContainer etownage/phpapp:latest'
 		}
 	}
 
@@ -49,5 +49,12 @@ pipeline {
 		}
 	}
 	
+
+	stage('Launch Selenium Test'){
+		steps{
+			sh 'mvn surefire:test'
+		}
+	}
+
     }
 }
