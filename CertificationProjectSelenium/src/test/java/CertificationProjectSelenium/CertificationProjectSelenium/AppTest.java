@@ -23,7 +23,7 @@ public class AppTest
     {
         System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         WebDriver webDriver = new ChromeDriver();
-        String ipAddress = "http://35.225.163.128:32775/website/";
+        String ipAddress = "http://35.225.163.128:32000/website/";
         //String ipAddress = "http://www.facebook.com";
         webDriver.get(ipAddress);
         
