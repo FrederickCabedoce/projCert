@@ -44,8 +44,7 @@ pipeline {
 	}
 
 	stage('Lauch apache server'){
-		steps{
-			
+		steps{	
 			sh 'docker exec -d phpTestingContainer /etc/init.d/apache2 start'
 		}
 	}
