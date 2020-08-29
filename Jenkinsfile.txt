@@ -11,6 +11,7 @@ pipeline {
 
 	stage('Zip file') {
 		steps{
+			sh 'rm -f phppackage.tar.gz'
 			sh 'tar -czf phppackage.tar.gz ./*'
 		}
 	}
@@ -31,8 +32,8 @@ pipeline {
 	}	
 
 	stage('Run Docker Image'){
-		steps{
-			sh 'docker run -itd -P --name phpTestingContainer etownage/phpapp:latest'
+		steps{ 
+			sh 'docker run -itd -p 32000:80 --name phpTestingContainer etownage/phpapp:latest'
 		}
 	}
 
@@ -43,10 +44,17 @@ pipeline {
 	}
 
 	stage('Lauch apache server'){
-		steps{
+		steps{	
 			sh 'docker exec -d phpTestingContainer /etc/init.d/apache2 start'
 		}
 	}
 	
+
+	stage('Launch Selenium Test'){
+		steps{
+			sh 'chmod +x ./CertificationProjectSelenium/chromedriver.exe'
+			sh 'mvn -f ./CertificationProjectSelenium/pom.xml surefire:test'
+		}
+	}
     }
 }
