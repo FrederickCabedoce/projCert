@@ -1,5 +1,5 @@
 ---
-- hosts: test
+- hosts: webserver
   become: true
 
   vars:
@@ -16,9 +16,20 @@
     - role: geerlingguy.docker
     - role: gantsign.maven
 
-- hosts: test
+- hosts: webserver
   tasks:
   - name: Add Zip package
     yum:
       name: zip
+      
+  - name: Add Unzip package
+    yum:
+      name: unzip
+      state: present      
+
+  - name: Add SSHPass package
+    yum:
+      name: sshpass
+      state: present
+
 
