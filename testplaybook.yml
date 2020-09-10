@@ -1,0 +1,24 @@
+---
+- hosts: test
+  become: true
+
+  vars:
+    jenkins_hostname: 10.128.0.7
+    java_packages:
+      - java-1.8.0-openjdk
+
+  roles:
+    - role: geerlingguy.java
+    - role: geerlingguy.jenkins
+    - role: geerlingguy.git
+    - role: koichirok.chromedriver
+    - role: marverix.chromium
+    - role: geerlingguy.docker
+    - role: gantsign.maven
+
+- hosts: test
+  tasks:
+  - name: Add Zip package
+    yum:
+      name: zip
+
