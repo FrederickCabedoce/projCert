@@ -53,7 +53,7 @@ pipeline {
 	stage('Launch Selenium Test'){
 		steps{
 			sh 'chmod +x ./CertificationProjectSelenium/chromedriver.exe'
-			sh 'mvn -f ./CertificationProjectSelenium/pom.xml test'
+			sh 'mvn -f ./CertificationProjectSelenium/pom.xml clean test'
 		}
 	}
 
