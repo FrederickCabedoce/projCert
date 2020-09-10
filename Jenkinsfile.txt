@@ -6,7 +6,6 @@ pipeline {
             steps {		
 			echo 'Checking out the latest code version.'	
 			git credentialsId: '62bd6aa0-c725-4e3d-ab59-dd3a0855f5d1', url: 'https://github.com/FrederickCabedoce/projCert.git'
-	
 		  }
         }
 
@@ -54,7 +53,13 @@ pipeline {
 	stage('Launch Selenium Test'){
 		steps{
 			sh 'chmod +x ./CertificationProjectSelenium/chromedriver.exe'
-			sh 'mvn -f ./CertificationProjectSelenium/pom.xml test'
+			sh 'mvn -f ./CertificationProjectSelenium/pom.xml surefire:test'
+		}
+	}
+
+	stage('Transfer Package To Prod Server'){
+		steps{
+			sh 'sshpass -f "/home/password" scp phppackage.tar.gz root@10.128.0.8:/home'
 		}
 	}
     }
