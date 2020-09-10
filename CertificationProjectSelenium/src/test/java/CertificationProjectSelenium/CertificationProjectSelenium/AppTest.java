@@ -19,12 +19,11 @@ public class AppTest {
 	@Test
     public void testApp()
     {
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/opt/google/chromedriver/bin/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless", "window-size=1024,768", "--no-sandbox");
         WebDriver webDriver = new ChromeDriver(options);
         String ipAddress = "http://35.225.163.128:32000/website/";
-        //String ipAddress = "http://www.facebook.com";
         webDriver.get(ipAddress);
         
         webDriver.findElement(By.id("About Us")).click();
